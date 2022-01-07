@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Box } from "@mui/system";
 
 function Home() {
@@ -16,7 +17,7 @@ function Home() {
         Play quiz below to see if you can guess the country from the flag. Have
         fun!
       </h3>
-      <button>Start Quiz</button>
+      <NavLink to="/quiz">Play Quiz</NavLink>
     </Box>
   );
 }
