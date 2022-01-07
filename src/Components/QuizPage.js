@@ -1,44 +1,38 @@
 import React, { useState } from "react";
 
-function QuizPage() {
-  const [randomFlag, setRandomFlag] = useState("");
-  const [answers, setAnswers] = useState([]);
+function QuizPage({ flags }) {
+  const [randomFlag, setRandomFlag] = useState([]);
+  //const [answers, setAnswers] = useState([]);
 
   function handleClick() {
     fetch("http://localhost:3000/data")
       .then((res) => res.json())
       .then((data) => {
-        //extract one obj from array
-        setRandomFlag(data[Math.floor(Math.random() * data.length)]);
+        // //extract one obj from array
+        // setRandomFlag(data[Math.floor(Math.random() * data.length)]);
+        // //extract 3 obj of array  (shuffle and get first 3 elements)
+        // setAnswers(data.sort(() => Math.random() - 0.5).slice(0, 3));
 
-        //extract 3 obj from array
-        setAnswers(data.sort(() => Math.random() - 0.5).slice(0, 3));
-
-        // var arr = [];
-        // while (arr.length < 8) {
-        //   var r = Math.floor(Math.random() * 100) + 1;
-        //   if (arr.indexOf(r) === -1) arr.push(r);
-        // }
-
-        // while (answers.length < 3) {
-        //   let r = Math.floor(Math.random() * data.length);
-        //   if (answers.indexOf(r) === -1) answers.push(r);
-        //   setAnswers([data[Math.floor(Math.random() * data.length)]]);
-        // }
+        setRandomFlag(data.sort(() => Math.random() - 0.5).slice(0, 4));
       });
   }
 
-  //console.log("length: ", answers.length, "answers: ", answers);
+  //fetched 4 random flags -> save obj of array in state
+  //apply first element in image by randomFlags[0].map
+  //shuffle and iterate and apply name
 
   return (
     <div>
-      <img src={randomFlag.flag} width="200px" alt={randomFlag.name} />
-      <ul style={{ listStyleType: "none" }}>
-        <li>{randomFlag.name}</li>
-        {answers.map((a) => (
+      {randomFlag.length === 0 ? null : (
+        <>
+          <img src={randomFlag[0].flag} width="200px" alt={randomFlag.name} />
+          <ul style={{ listStyleType: "none" }}>
+            {randomFlag.sort(() => Math.random() - 0.5).map((a) => (
           <li key={a.id}>{a.name}</li>
         ))}
-      </ul>
+          </ul>
+        </>
+      )}
       <br></br>
       <button onClick={handleClick}>
         {randomFlag.length === 0 ? "Start" : "Next"}

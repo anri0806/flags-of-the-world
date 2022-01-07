@@ -26,7 +26,7 @@ function App() {
           <FlagPage flags={flags} onSubmitAdd={handleAddFlag} />
         </Route>
         <Route path="/quiz">
-          <QuizPage />
+          <QuizPage flags={flags} />
         </Route>
         <Route path="/">
           <Home />
