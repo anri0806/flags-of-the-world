@@ -1,41 +1,75 @@
 import React, { useState } from "react";
 
 function QuizPage({ flags }) {
-  const [randomFlag, setRandomFlag] = useState([]);
+  const [randomFlags, setRandomFlags] = useState([]);
+  const [correctAnswer, setCorrectAnswer] = useState("");
   //const [answers, setAnswers] = useState([]);
+
+  function helperFunc(data) {
+    setRandomFlags(data);
+    setCorrectAnswer(data[0]);
+  }
 
   function handleClick() {
     fetch("http://localhost:3000/data")
       .then((res) => res.json())
       .then((data) => {
-        // //extract one obj from array
+        // //extract one obj from fetched data
         // setRandomFlag(data[Math.floor(Math.random() * data.length)]);
-        // //extract 3 obj of array  (shuffle and get first 3 elements)
+        // //extract 3 obj of fetched data  (shuffle and get first 3 elements)
         // setAnswers(data.sort(() => Math.random() - 0.5).slice(0, 3));
 
-        setRandomFlag(data.sort(() => Math.random() - 0.5).slice(0, 4));
+        //fetched 4 random flags -> save obj of array in state
+        //apply first element in image  randomFlags[0]
+        //for answers, shuffle 4 obj and iterate and apply name
+
+        helperFunc(data.sort(() => Math.random() - 0.5).slice(0, 4));
+        //setRandomFlags(data.sort(() => Math.random() - 0.5).slice(0, 4));
       });
   }
 
-  //fetched 4 random flags -> save obj of array in state
-  //apply first element in image by randomFlags[0].map
-  //shuffle and iterate and apply name
+  ///////START FROM HERE///////
+  //how to make correct answer green when wrong answered is clicked
+
+  function handleAnswer(e) {
+    //console.log(e.target.value);
+
+    if (e.target.value === correctAnswer.name) {
+      e.target.style.color = "green";
+      alert(`CORRECT! The answer is ${correctAnswer.name}`);
+    } else {
+      e.target.style.color = "red";
+      alert(`WRONG! The answer is ${correctAnswer.name}`);
+    }
+  }
 
   return (
     <div>
-      {randomFlag.length === 0 ? null : (
+      {randomFlags.length === 0 ? null : (
         <>
-          <img src={randomFlag[0].flag} width="200px" alt={randomFlag.name} />
-          <ul style={{ listStyleType: "none" }}>
-            {randomFlag.sort(() => Math.random() - 0.5).map((a) => (
-          <li key={a.id}>{a.name}</li>
-        ))}
-          </ul>
+          <img
+            src={correctAnswer.flag}
+            width="200px"
+            alt={correctAnswer.name}
+          />
+          <br />
+          {randomFlags
+            .sort(() => Math.random() - 0.5)
+            .map((a) => (
+              <button
+                style={{ color: "black" }}
+                onClick={handleAnswer}
+                key={a.id}
+                value={a.name}
+              >
+                {a.name}
+              </button>
+            ))}
         </>
       )}
       <br></br>
       <button onClick={handleClick}>
-        {randomFlag.length === 0 ? "Start" : "Next"}
+        {randomFlags.length === 0 ? "Start" : "Next"}
       </button>
     </div>
   );
