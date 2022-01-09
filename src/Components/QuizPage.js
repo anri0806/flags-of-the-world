@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import QuizAnswer from "./QuizAnswer";
 
-function QuizPage({ flags }) {
+function QuizPage() {
   const [randomFlags, setRandomFlags] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
-  //const [answers, setAnswers] = useState([]);
+  const [answered, setAnswered] = useState(false);
+  const [emoji, setEmoji] = useState("");
 
   function helperFunc(data) {
     setRandomFlags(data);
@@ -11,35 +13,26 @@ function QuizPage({ flags }) {
   }
 
   function handleClick() {
+    setAnswered(false);
     fetch("http://localhost:3000/data")
       .then((res) => res.json())
       .then((data) => {
-        // //extract one obj from fetched data
-        // setRandomFlag(data[Math.floor(Math.random() * data.length)]);
-        // //extract 3 obj of fetched data  (shuffle and get first 3 elements)
-        // setAnswers(data.sort(() => Math.random() - 0.5).slice(0, 3));
-
-        //fetched 4 random flags -> save obj of array in state
-        //apply first element in image  randomFlags[0]
-        //for answers, shuffle 4 obj and iterate and apply name
-
         helperFunc(data.sort(() => Math.random() - 0.5).slice(0, 4));
-        //setRandomFlags(data.sort(() => Math.random() - 0.5).slice(0, 4));
       });
   }
 
   ///////START FROM HERE///////
-  //how to make correct answer green when wrong answered is clicked
+  //Pop up message instead of alert?
+  //OR how to make correct answer green when wrong answered is clicked
 
   function handleAnswer(e) {
-    //console.log(e.target.value);
-
-    if (e.target.value === correctAnswer.name) {
-      e.target.style.color = "green";
-      alert(`CORRECT! The answer is ${correctAnswer.name}`);
+    if (correctAnswer.name === e.target.textContent) {
+      //e.target.textContent = `✅❌ ${e.target.textContent}`;
+      setEmoji("Correct! ✅");
+      setAnswered(true);
     } else {
-      e.target.style.color = "red";
-      alert(`WRONG! The answer is ${correctAnswer.name}`);
+      setEmoji("❌");
+      setAnswered(true);
     }
   }
 
@@ -53,20 +46,22 @@ function QuizPage({ flags }) {
             alt={correctAnswer.name}
           />
           <br />
-          {randomFlags
-            .sort(() => Math.random() - 0.5)
-            .map((a) => (
-              <button
-                style={{ color: "black" }}
-                onClick={handleAnswer}
-                key={a.id}
-                value={a.name}
-              >
-                {a.name}
-              </button>
-            ))}
+          {answered ? (
+            <QuizAnswer emoji={emoji} correctAnswer={correctAnswer.name} />
+          ) : (
+            <ul style={{ listStyleType: "none" }}>
+              {randomFlags
+                .sort(() => Math.random() - 0.5)
+                .map((a) => (
+                  <li onClick={handleAnswer} key={a.id}>
+                    {a.name}
+                  </li>
+                ))}
+            </ul>
+          )}
         </>
       )}
+
       <br></br>
       <button onClick={handleClick}>
         {randomFlags.length === 0 ? "Start" : "Next"}
@@ -76,15 +71,3 @@ function QuizPage({ flags }) {
 }
 
 export default QuizPage;
-
-// if(!haveIt.includes(random)) {
-//   haveIt.push(random);
-//   return random;
-// } else {
-//   if(haveIt.length < maxNr) {
-//     //Recursively generate number
-//    return  generateUniqueRandom(maxNr);
-//   } else {
-//     console.log('No more numbers available.')
-//     return false;
-//   }
