@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import QuizAnswer from "./QuizAnswer";
 
 function QuizPage() {
@@ -28,10 +29,10 @@ function QuizPage() {
   function handleAnswer(e) {
     if (correctAnswer.name === e.target.textContent) {
       //e.target.textContent = `✅❌ ${e.target.textContent}`;
-      setEmoji("Correct! ✅");
+      setEmoji("Correct ✅");
       setAnswered(true);
     } else {
-      setEmoji("❌");
+      setEmoji("Wrong ❌");
       setAnswered(true);
     }
   }
@@ -40,6 +41,7 @@ function QuizPage() {
     <div>
       {randomFlags.length === 0 ? null : (
         <>
+          <h2>Which Country's flag is this?</h2>
           <img
             src={correctAnswer.flag}
             width="200px"
@@ -66,6 +68,9 @@ function QuizPage() {
       <button onClick={handleClick}>
         {randomFlags.length === 0 ? "Start" : "Next"}
       </button>
+      <br></br>
+      <br></br>
+      { randomFlags.length === 0 ? null : <NavLink to="/">Exit</NavLink>}
     </div>
   );
 }
