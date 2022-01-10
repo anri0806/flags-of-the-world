@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
 function Home() {
   return (
@@ -12,7 +13,9 @@ function Home() {
         boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
       }}
     >
-      <h1>Can you name the flags of the countries?</h1>
+      <Typography variant="h5">
+        Can you name the flags of the countries?
+      </Typography>
       <h3>
         Play quiz below to see if you can guess the country from the flag. Have
         fun!

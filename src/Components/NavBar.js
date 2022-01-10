@@ -37,11 +37,11 @@ function NavBar() {
             <Link to="/" className={classes.link}>
               HOME
             </Link>
-            <Link to="/flaglist" className={classes.link}>
-              FLAGLIST
-            </Link>
             <Link to="/quiz" className={classes.link}>
               QUIZ
+            </Link>
+            <Link to="/flaglist" className={classes.link}>
+              FLAGLIST
             </Link>
           </div>
         </Toolbar>
