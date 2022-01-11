@@ -12,14 +12,6 @@ body {
   text-align: center;
 }
 
-/* background-image: url("./image/wallpaperbetter.com_1920x1080.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  width: 100%;
-  height: auto; */
-
 .wrap {
   position: relative;
 }
@@ -42,6 +34,7 @@ body {
 .content {
   position: relative;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

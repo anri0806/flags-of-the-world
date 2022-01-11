@@ -3,17 +3,13 @@ import { NavLink } from "react-router-dom";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 
-//START FROM HERE//
-//1. link "see" the list of flags in Home.js
-//2. style quiz and list page
-
 function Home() {
   return (
     <Box
       sx={{
         textAlign: "center",
         margin: 20,
-        padding: 7,
+        padding: 11,
         borderRadius: 2,
         backgroundColor: "rgba(0, 6, 3, 0.5)",
         color: "white",
@@ -26,7 +22,12 @@ function Home() {
         Play quiz below to see if you can guess the country from the flag. Have
         fun!
       </Typography>
-      <Typography>See the list of flags</Typography>
+      <Typography>
+        <a href="/flaglist" style={{ color: "#4CAF50" }}>
+          See
+        </a>{" "}
+        the list of flags
+      </Typography>
       <br></br>
       <br></br>
       <br></br>

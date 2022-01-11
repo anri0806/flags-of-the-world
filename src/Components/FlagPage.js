@@ -5,7 +5,9 @@ import FlagForm from "./FlagForm";
 function FlagPage({ flags, onSubmitAdd }) {
   return (
     <div>
+      <br />
       <FlagForm onSubmitAdd={onSubmitAdd} />
+      <br />
       <FlagList flags={flags} />
     </div>
   );

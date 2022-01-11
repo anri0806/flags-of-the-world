@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
+import { Box } from "@mui/system";
 
 function FlagForm({ onSubmitAdd }) {
   const [formData, setFormData] = useState({
@@ -22,28 +25,47 @@ function FlagForm({ onSubmitAdd }) {
     })
       .then((res) => res.json())
       .then((newItem) => onSubmitAdd(newItem));
+
+    setFormData({ name: "", flag: "" });
   }
 
   return (
-    <div>
+    <Box component="form">
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
+          required
           onChange={handleChange}
           value={formData.name}
           type="text"
           name="name"
-          placeholder="Country name"
+          label="Add Country Name"
+          variant="standard"
+          size="small"
+          sx={{
+            marginRight: "10px",
+            width: "20%",
+          }}
         />
-        <input
+        <TextField
+          required
           onChange={handleChange}
           value={formData.flag}
           type="text"
           name="flag"
-          placeholder="Image link"
+          label="Add Image link"
+          variant="standard"
+          size="small"
+          sx={{ marginRight: "10px", width: "20%" }}
         />
-        <input type="submit" value="Add" />
+        <Button
+          type="submit"
+          variant="outlined"
+          sx={{ borderColor: "white", color: "white", height: "43px" }}
+        >
+          Add
+        </Button>
       </form>
-    </div>
+    </Box>
   );
 }
 

@@ -6,8 +6,7 @@ function FlagList({ flags }) {
 
   return (
     <div>
-      <h3>Let's learn all the countries flags of the world!</h3>
-      <ul style={{"listStyleType": "none"}}>{flagLists}</ul>
+      <ul style={{ listStyleType: "none" }}>{flagLists}</ul>
     </div>
   );
 }
