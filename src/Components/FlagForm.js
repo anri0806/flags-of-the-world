@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 
 function FlagForm({ onSubmitAdd }) {
@@ -30,41 +29,39 @@ function FlagForm({ onSubmitAdd }) {
   }
 
   return (
-    <Box component="form">
-      <form onSubmit={handleSubmit}>
-        <TextField
-          required
-          onChange={handleChange}
-          value={formData.name}
-          type="text"
-          name="name"
-          label="Add Country Name"
-          variant="standard"
-          size="small"
-          sx={{
-            marginRight: "10px",
-            width: "20%",
-          }}
-        />
-        <TextField
-          required
-          onChange={handleChange}
-          value={formData.flag}
-          type="text"
-          name="flag"
-          label="Add Image link"
-          variant="standard"
-          size="small"
-          sx={{ marginRight: "10px", width: "20%" }}
-        />
-        <Button
-          type="submit"
-          variant="outlined"
-          sx={{ borderColor: "white", color: "white", height: "43px" }}
-        >
-          Add
-        </Button>
-      </form>
+    <Box component="form" onSubmit={handleSubmit} sx={{ marginTop: "12px" }}>
+      <TextField
+        required
+        onChange={handleChange}
+        value={formData.name}
+        type="text"
+        name="name"
+        label="Add Country Name"
+        variant="standard"
+        size="medium"
+        sx={{
+          marginRight: "10px",
+          width: "20%",
+        }}
+      />
+      <TextField
+        required
+        onChange={handleChange}
+        value={formData.flag}
+        type="text"
+        name="flag"
+        label="Add Image link"
+        variant="standard"
+        size="medium"
+        sx={{ marginRight: "10px", width: "20%" }}
+      />
+      <Button
+        type="submit"
+        variant="outlined"
+        sx={{ borderColor: "white", color: "white", height: "43px" }}
+      >
+        Add
+      </Button>
     </Box>
   );
 }

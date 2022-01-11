@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Card, CardContent, Typography } from "@mui/material";
 import QuizAnswer from "./QuizAnswer";
 
 function QuizCard() {
@@ -24,7 +25,6 @@ function QuizCard() {
 
   function handleAnswer(e) {
     if (correctAnswer.name === e.target.textContent) {
-      //e.target.textContent = `✅❌ ${e.target.textContent}`;
       setEmoji("Correct ✅");
       setAnswered(true);
     } else {
@@ -34,13 +34,36 @@ function QuizCard() {
   }
 
   return (
-    <div>
-      {randomFlags.length === 0 ? null : (
+    <Card
+      variant="outlined"
+      sx={{
+        display: "block",
+        margin: "auto",
+        marginTop: "30px",
+        padding: "20px",
+        width: "70%",
+        backgroundColor: "rgba(0, 6, 3, 0.5)",
+        textAlign: "center",
+        alignItems: "center",
+      }}
+    >
+      {randomFlags.length === 0 ? (
         <>
-          <h2>Which Country's flag is this?</h2>
+          <Typography sx={{ color: "white", fontSize: "30px", margin: "20px" }}>
+            Click start to begin!
+          </Typography>
+        </>
+      ) : (
+        <CardContent>
+          <Typography
+            sx={{ color: "white", fontWeight: "bold", fontSize: "35px" }}
+          >
+            Which Country's flag is this?
+          </Typography>
+          <br />
           <img
             src={correctAnswer.flag}
-            width="200px"
+            width="300px"
             alt={correctAnswer.name}
           />
           <br />
@@ -51,23 +74,53 @@ function QuizCard() {
               {randomFlags
                 .sort(() => Math.random() - 0.5)
                 .map((a) => (
-                  <li onClick={handleAnswer} key={a.id}>
+                  <Typography
+                    onClick={handleAnswer}
+                    key={a.id}
+                    sx={{
+                      color: "white",
+                      fontSize: "22px",
+                      border: "1px solid white",
+                      borderRadius: "5px",
+                      margin: "14px 10px",
+                      padding: "9px",
+                      width: "300px",
+                      cursor: "pointer",
+                      display: "inline-block",
+                    }}
+                  >
                     {a.name}
-                  </li>
+                  </Typography>
                 ))}
             </ul>
           )}
-        </>
+        </CardContent>
       )}
-
-      <br></br>
-      <button onClick={handleClick}>
-        {randomFlags.length === 0 ? "Start" : "Next"}
+      <button
+        onClick={handleClick}
+        style={{
+          color: "white",
+          textDecoration: "none",
+          fontWeight: "bold",
+          fontSize: "20px",
+          backgroundColor: "#FFA557",
+          padding: "13px 25px",
+          marginBottom: "20px",
+          border: "none",
+          borderRadius: 2,
+          cursor: "pointer",
+        }}
+      >
+        {randomFlags.length === 0 ? "START" : "Next"}
       </button>
-      <br></br>
-      <br></br>
-      {randomFlags.length === 0 ? null : <NavLink to="/quiz">Exit</NavLink>}
-    </div>
+      <br />
+      <br />
+      {randomFlags.length === 0 ? null : (
+        <NavLink to="/" style={{ color: "#087035", fontSize: "17px" }}>
+          Exit
+        </NavLink>
+      )}
+    </Card>
   );
 }
 

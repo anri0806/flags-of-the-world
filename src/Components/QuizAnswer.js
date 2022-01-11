@@ -1,11 +1,18 @@
 import React from "react";
+import { Typography } from "@mui/material";
 
 function QuizAnswer({ emoji, correctAnswer }) {
   return (
     <div>
-      <p>
-        {emoji} The answer is {correctAnswer}{" "}
-      </p>
+      <Typography
+        sx={{
+          color: "white",
+          fontSize: "22px",
+          margin: "50px",
+        }}
+      >
+        {emoji} The answer is {correctAnswer}!
+      </Typography>
     </div>
   );
 }

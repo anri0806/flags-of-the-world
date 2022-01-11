@@ -18,16 +18,14 @@ function FlagCard({ flag }) {
       }}
     >
       <CardContent>
-        <li>
-          <img
-            src={flag.flag}
-            alt={flag.name}
-            style={{ width: "190px", height: "110px" }}
-          />
-          <Typography sx={{ color: "white", fontWeight: "bold" }}>
-            {flag.name}
-          </Typography>
-        </li>
+        <img
+          src={flag.flag}
+          alt={flag.name}
+          style={{ width: "190px", height: "110px" }}
+        />
+        <Typography sx={{ color: "white", fontWeight: "bold" }}>
+          {flag.name}
+        </Typography>
       </CardContent>
     </Card>
   );

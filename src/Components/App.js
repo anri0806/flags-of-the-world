@@ -19,7 +19,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       <NavBar />
       <Switch>
         <Route path="/flaglist">

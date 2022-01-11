@@ -28,9 +28,9 @@ function Home() {
         </a>{" "}
         the list of flags
       </Typography>
-      <br></br>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
+      <br />
       <NavLink
         to="/quiz"
         style={{

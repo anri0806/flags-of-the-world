@@ -6,16 +6,16 @@ import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import { grey } from "@mui/material/colors";
 
 const useStyles = makeStyles(() => ({
-  navLink: {
-    display: "flex",
-    position: "absolute",
-    right: 70,
-  },
+  // navLink: {
+  //   display: "flex",
+  //   position: "absolute",
+  //   right: 70,
+  // },
   link: {
     textDecoration: "none",
     color: "white",
     fontStyle: "normal",
-    padding: "6px 20px 7px",
+    padding: "6px 24px 7px",
     fontWeight: "bold",
     "&:hover": {
       borderBottom: "1px solid white",
@@ -37,14 +37,14 @@ function NavBar() {
               textDecoration: "none",
               color: "white",
               fontWeight: "bold",
-              fontSize: 23,
+              fontSize: "23px",
               fontFamily: "roboto",
             }}
           >
             {" "}
             FLAGS OF THE WORLD
           </Link>
-          <div className={classes.navLink}>
+          <div style={{ display: "flex", position: "absolute", right: 65 }}>
             <Link to="/" className={classes.link}>
               HOME
             </Link>
