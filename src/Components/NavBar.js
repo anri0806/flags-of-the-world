@@ -32,7 +32,19 @@ function NavBar() {
       <AppBar position="static" sx={{ backgroundColor: grey[800] }}>
         <Toolbar>
           <FlagCircleIcon fontSize="large" sx={{ paddingRight: "10px" }} />
-          <Typography variant="h6"> FLAGS OF THE WORLD</Typography>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: 23,
+              fontFamily: "roboto",
+            }}
+          >
+            {" "}
+            FLAGS OF THE WORLD
+          </Link>
           <div className={classes.navLink}>
             <Link to="/" className={classes.link}>
               HOME
