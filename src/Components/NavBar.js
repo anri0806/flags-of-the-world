@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { AppBar, Toolbar } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import { grey } from "@mui/material/colors";
 
+
+////////  Sets styles for multiple link elements  ////////
 const useStyles = makeStyles(() => ({
-  // navLink: {
-  //   display: "flex",
-  //   position: "absolute",
-  //   right: 70,
-  // },
   link: {
     textDecoration: "none",
     color: "white",
@@ -23,7 +21,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+
+
 function NavBar() {
+  ////////  Sets styles for multiple link elements  ////////
   const classes = useStyles();
 
   return (

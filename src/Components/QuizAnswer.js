@@ -1,7 +1,11 @@
 import React from "react";
+
 import { Typography } from "@mui/material";
 
+
+
 function QuizAnswer({ emoji, correctAnswer }) {
+  
   return (
     <div>
       <Typography

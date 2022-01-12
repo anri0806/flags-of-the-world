@@ -1,27 +1,39 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Card, CardContent, Typography } from "@mui/material";
 import QuizAnswer from "./QuizAnswer";
+
+import { Card, CardContent, Typography } from "@mui/material";
+
+
 
 function QuizCard() {
   const [randomFlags, setRandomFlags] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [answered, setAnswered] = useState(false);
   const [emoji, setEmoji] = useState("");
+  
 
-  function helperFunc(data) {
+
+  function handleFetchedData(data) {
+    ////////  Stores/updates fetched data in randomFlags  ////////
     setRandomFlags(data);
+
+    ////////  Picks first data from fetched data and store it as a correct answer  ////////
     setCorrectAnswer(data[0]);
   }
 
-  function handleClick() {
+
+  function handleFetch() {
     setAnswered(false);
     fetch("http://localhost:3000/data")
       .then((res) => res.json())
       .then((data) => {
-        helperFunc(data.sort(() => Math.random() - 0.5).slice(0, 4));
+        ////////  RANDOMIZE DATA! Shuffles fetched data & picks first four data ////////
+        handleFetchedData(data.sort(() => Math.random() - 0.5).slice(0, 4));
       });
   }
+
+
 
   function handleAnswer(e) {
     if (correctAnswer.name === e.target.textContent) {
@@ -32,6 +44,8 @@ function QuizCard() {
       setAnswered(true);
     }
   }
+
+
 
   return (
     <Card
@@ -47,6 +61,7 @@ function QuizCard() {
         alignItems: "center",
       }}
     >
+      {/*   Renders quiz once data is fetched otherwise render 'Click start to begin' message   */}
       {randomFlags.length === 0 ? (
         <>
           <Typography sx={{ color: "white", fontSize: "30px", margin: "20px" }}>
@@ -60,17 +75,25 @@ function QuizCard() {
           >
             Which Country's flag is this?
           </Typography>
+
           <br />
+
           <img
             src={correctAnswer.flag}
             width="300px"
             alt={correctAnswer.name}
           />
+
           <br />
+
+          {/*   Renders correct answer once user chose the answer   */}
           {answered ? (
             <QuizAnswer emoji={emoji} correctAnswer={correctAnswer.name} />
           ) : (
             <ul style={{ listStyleType: "none" }}>
+              
+              {/*   CHANGE ANSWERS ORDER HERE! 
+              Shuffles fetched data again to render answers to choose from   */}
               {randomFlags
                 .sort(() => Math.random() - 0.5)
                 .map((a) => (
@@ -97,7 +120,7 @@ function QuizCard() {
         </CardContent>
       )}
       <button
-        onClick={handleClick}
+        onClick={handleFetch}
         style={{
           color: "white",
           textDecoration: "none",
@@ -111,10 +134,12 @@ function QuizCard() {
           cursor: "pointer",
         }}
       >
+        {/*    Changes button to 'Next' once data is fetched    */}
         {randomFlags.length === 0 ? "START" : "Next"}
       </button>
       <br />
       <br />
+
       {randomFlags.length === 0 ? null : (
         <NavLink to="/" style={{ color: "#087035", fontSize: "17px" }}>
           Exit

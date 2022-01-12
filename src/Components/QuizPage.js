@@ -1,7 +1,10 @@
 import React from "react";
 import QuizCard from "./QuizCard";
 
+
+
 function QuizPage() {
+
   return (
     <div>
       <QuizCard />

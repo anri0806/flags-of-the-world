@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
+
+
 
 function FlagForm({ onSubmitAdd }) {
   const [formData, setFormData] = useState({
@@ -8,9 +11,12 @@ function FlagForm({ onSubmitAdd }) {
     flag: "",
   });
 
+
+  ////////  Makes form controlled  ////////
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+
 
   function handleSubmit(e) {
     e.preventDefault();
