@@ -7,7 +7,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 
 
 function QuizCard() {
-  const [randomFlags, setRandomFlags] = useState([]);
+  const [randomFlagData, setRandomFlagData] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [answered, setAnswered] = useState(false);
   const [emoji, setEmoji] = useState("");
@@ -15,13 +15,14 @@ function QuizCard() {
 
 
   function handleFetchedData(data) {
-    ////////  Stores/updates fetched data in randomFlags  ////////
-    setRandomFlags(data);
+    ////////  Stores/updates fetched data in randomFlagData  ////////
+    setRandomFlagData(data);
 
     ////////  Picks first data from fetched data and store it as a correct answer  ////////
     setCorrectAnswer(data[0]);
   }
 
+  
 
   function handleFetch() {
     setAnswered(false);
@@ -34,7 +35,7 @@ function QuizCard() {
   }
 
 
-
+  ////////  Checks whether chosen answer matches with correctAnswer or not  ////////
   function handleAnswer(e) {
     if (correctAnswer.name === e.target.textContent) {
       setEmoji("Correct ✅");
@@ -62,7 +63,7 @@ function QuizCard() {
       }}
     >
       {/*   Renders quiz once data is fetched otherwise render 'Click start to begin' message   */}
-      {randomFlags.length === 0 ? (
+      {randomFlagData.length === 0 ? (
         <>
           <Typography sx={{ color: "white", fontSize: "30px", margin: "20px" }}>
             Click start to begin!
@@ -94,7 +95,7 @@ function QuizCard() {
               
               {/*   CHANGE ANSWERS ORDER HERE! 
               Shuffles fetched data again to render answers to choose from   */}
-              {randomFlags
+              {randomFlagData
                 .sort(() => Math.random() - 0.5)
                 .map((a) => (
                   <Typography
@@ -135,12 +136,12 @@ function QuizCard() {
         }}
       >
         {/*    Changes button to 'Next' once data is fetched    */}
-        {randomFlags.length === 0 ? "START" : "Next"}
+        {randomFlagData.length === 0 ? "START" : "Next"}
       </button>
       <br />
       <br />
 
-      {randomFlags.length === 0 ? null : (
+      {randomFlagData.length === 0 ? null : (
         <NavLink to="/" style={{ color: "#087035", fontSize: "17px" }}>
           Exit
         </NavLink>
