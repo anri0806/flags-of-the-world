@@ -1096,6 +1096,11 @@
       "id": 219,
       "name": "Zimbabwe",
       "flag": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg"
+    },
+    {
+      "name": "NYC",
+      "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_New_York_City.svg/1200px-Flag_of_New_York_City.svg.png",
+      "id": 220
     }
   ]
 }

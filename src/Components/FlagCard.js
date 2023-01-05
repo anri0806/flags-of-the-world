@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import { Typography } from "@mui/material";
 
 
-
 function FlagCard({ flag }) {
   return (
     <Card

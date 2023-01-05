@@ -12,7 +12,7 @@ function FlagForm({ onSubmitAdd }) {
   });
 
 
-  ////////  Makes form controlled  ////////
+  ////////  Controlled form  ////////
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
